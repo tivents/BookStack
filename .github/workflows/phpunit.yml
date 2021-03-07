@@ -18,6 +18,7 @@ jobs:
     strategy:
       matrix:
         php: [7.2, 7.3, 7.4]
+        extensions: gd, mbstring, json, curl, xml, mysql
     steps:
     - uses: actions/checkout@v1
 
