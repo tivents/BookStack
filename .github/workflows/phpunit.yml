@@ -45,7 +45,7 @@ jobs:
     - name: Setup Database
       run: |
         mysql -uroot -proot -e 'CREATE DATABASE IF NOT EXISTS `bookstack-test`;'
-        mysql -uroot -proot -e "CREATE USER 'bookstack-test'@'localhost' IDENTIFIED BY 'bookstack-test';"
+        mysql -uroot -proot -e "CREATE USER 'bookstack-test'@'localhost' IDENTIFIED WITH mysql_native_password BY 'bookstack-test';"
         mysql -uroot -proot -e "GRANT ALL ON \`bookstack-test\`.* TO 'bookstack-test'@'localhost';"
         mysql -uroot -proot -e 'FLUSH PRIVILEGES;'
 
