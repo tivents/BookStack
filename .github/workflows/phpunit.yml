@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - release
+      - gh_actions_update
   pull_request:
     branches:
       - '*'
