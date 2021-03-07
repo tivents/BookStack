@@ -18,7 +18,6 @@ jobs:
     strategy:
       matrix:
         php: [7.2, 7.3, 7.4]
-        extensions: gd, mbstring, json, curl, xml, mysql
     steps:
     - uses: actions/checkout@v1
 
@@ -26,6 +25,7 @@ jobs:
       uses: shivammathur/setup-php@b7d1d9c9a92d8d8463ce36d7f60da34d461724f8
       with:
         php-version: ${{ matrix.php }}
+        extensions: gd, mbstring, json, curl, xml, mysql
 
     - name: Get Composer Cache Directory
       id: composer-cache
