@@ -37,8 +37,8 @@ class CreateBookshelvesTable extends Migration
 
         Schema::create('bookshelves', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 200);
-            $table->string('slug', 200);
+            $table->string('name');
+            $table->string('slug');
             $table->text('description');
             $table->integer('created_by')->nullable()->default(null);
             $table->integer('updated_by')->nullable()->default(null);

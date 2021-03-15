@@ -15,8 +15,8 @@ class CreateSearchIndexTable extends Migration
     {
         Schema::create('search_terms', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('term', 200);
-            $table->string('entity_type', 100);
+            $table->string('term');
+            $table->string('entity_type');
             $table->integer('entity_id');
             $table->integer('score');
 
