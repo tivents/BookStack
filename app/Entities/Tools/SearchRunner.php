@@ -287,6 +287,15 @@ class SearchRunner
         }
     }
 
+    protected function filterOwnedBy(EloquentBuilder $query, Entity $model, $input)
+    {
+        $userSlug = $input === 'me' ? user()->slug : trim($input);
+        $user = User::query()->where('slug', '=', $userSlug)->first(['id']);
+        if ($user) {
+            $query->where('owned_by', '=', $user->id);
+        }
+    }
+
     protected function filterInName(EloquentBuilder $query, Entity $model, $input)
     {
         $query->where('name', 'like', '%' .$input. '%');
