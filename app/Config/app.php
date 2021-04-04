@@ -12,12 +12,12 @@ return [
 
     // The environment to run BookStack in.
     // Options: production, development, demo, testing
-    'env' => env('APP_ENV', 'production'),
+    'env' => env('APP_ENV', 'development'),
 
     // Enter the application in debug mode.
     // Shows much more verbose error messages. Has potential to show
     // private configuration variables so should remain disabled in public.
-    'debug' => env('APP_DEBUG', false),
+    'debug' => env('APP_DEBUG', true),
 
     // The number of revisions to keep in the database.
     // Once this limit is reached older revisions will be deleted.
@@ -53,7 +53,7 @@ return [
     'timezone' => env('APP_TIMEZONE', 'UTC'),
 
     // Default locale to use
-    'locale' => env('APP_LANG', 'en'),
+    'locale' => env('APP_LANG', 'de'),
 
     // Locales available
     'locales' => ['en', 'ar', 'bg', 'bs', 'ca', 'cs', 'da', 'de', 'de_informal', 'es', 'es_AR', 'fa', 'fr', 'he', 'hu', 'id', 'it', 'ja', 'ko', 'lv', 'nl', 'nb', 'pt', 'pt_BR', 'sk', 'sl', 'sv', 'pl',  'ru', 'th', 'tr', 'uk', 'vi', 'zh_CN', 'zh_TW',],

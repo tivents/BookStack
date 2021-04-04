@@ -31,7 +31,8 @@
         "socialiteproviders/okta": "^4.1",
         "socialiteproviders/slack": "^4.1",
         "socialiteproviders/twitch": "^5.3",
-        "ssddanbrown/htmldiff": "^v1.0.1"
+        "ssddanbrown/htmldiff": "^v1.0.1",
+        "statikbe/laravel-cookie-consent": "^1.2"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5.1",
