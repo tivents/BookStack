@@ -1,5 +1,6 @@
 <?php namespace BookStack\Http\Controllers;
 
+use BookStack\Actions\View;
 use BookStack\Entities\Tools\BookContents;
 use BookStack\Entities\Tools\PageContent;
 use BookStack\Entities\Tools\PageEditActivity;
@@ -7,7 +8,6 @@ use BookStack\Entities\Models\Page;
 use BookStack\Entities\Repos\PageRepo;
 use BookStack\Entities\Tools\PermissionsUpdater;
 use BookStack\Exceptions\NotFoundException;
-use BookStack\Exceptions\NotifyException;
 use BookStack\Exceptions\PermissionsException;
 use Exception;
 use Illuminate\Http\Request;
@@ -142,7 +142,7 @@ class PageController extends Controller
             $page->load(['comments.createdBy']);
         }
 
-        Views::add($page);
+        View::incrementFor($page);
         $this->setPageTitle($page->getShortName());
         return view('pages.show', [
             'page' => $page,
@@ -295,7 +295,6 @@ class PageController extends Controller
      * Remove the specified page from storage.
      * @throws NotFoundException
      * @throws Throwable
-     * @throws NotifyException
      */
     public function destroy(string $bookSlug, string $pageSlug)
     {
@@ -311,7 +310,6 @@ class PageController extends Controller
     /**
      * Remove the specified draft page from storage.
      * @throws NotFoundException
-     * @throws NotifyException
      * @throws Throwable
      */
     public function destroyDraft(string $bookSlug, int $pageId)
@@ -340,9 +338,9 @@ class PageController extends Controller
             ->paginate(20)
             ->setPath(url('/pages/recently-updated'));
 
-        return view('pages.detailed-listing', [
+        return view('common.detailed-listing-paginated', [
             'title' => trans('entities.recently_updated_pages'),
-            'pages' => $pages
+            'entities' => $pages
         ]);
     }
 

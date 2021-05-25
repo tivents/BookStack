@@ -1,4 +1,4 @@
-<header id="header" header-mobile-toggle class="primary-background">
+<header id="header" component="header-mobile-toggle" class="primary-background">
     <div class="grid mx-l">
 
         <div>
@@ -10,7 +10,11 @@
                     <span class="logo-text">{{ setting('app-name') }}</span>
                 @endif
             </a>
-            <div class="mobile-menu-toggle hide-over-l">@icon('more')</div>
+            <button type="button"
+                    refs="header-mobile-toggle@toggle"
+                    title="{{ trans('common.header_menu_expand') }}"
+                    aria-expanded="false"
+                    class="mobile-menu-toggle hide-over-l">@icon('more')</button>
         </div>
 
         <div class="flex-container-row justify-center hide-under-l">
@@ -25,7 +29,7 @@
         </div>
 
         <div class="text-right">
-            <nav class="header-links">
+            <nav refs="header-mobile-toggle@menu" class="header-links">
                 <div class="links text-center">
                     @if (hasAppAccess())
                         <a class="hide-over-l" href="{{ url('/search') }}">@icon('search'){{ trans('common.search') }}</a>
@@ -50,13 +54,16 @@
                 </div>
                 @if(signedInUser())
                     <?php $currentUser = user(); ?>
-                    <div class="dropdown-container" component="dropdown">
+                    <div class="dropdown-container" component="dropdown" option:dropdown:bubble-escapes="true">
                         <span class="user-name py-s hide-under-l" refs="dropdown@toggle"
                               aria-haspopup="true" aria-expanded="false" aria-label="{{ trans('common.profile_menu') }}" tabindex="0">
                             <img class="avatar" src="{{$currentUser->getAvatar(30)}}" alt="{{ $currentUser->name }}">
                             <span class="name">{{ $currentUser->getShortName(9) }}</span> @icon('caret-down')
                         </span>
                         <ul refs="dropdown@menu" class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="{{ url('/favourites') }}">@icon('star'){{ trans('entities.my_favourites') }}</a>
+                            </li>
                             <li>
                                 <a href="{{ $currentUser->getProfileUrl() }}">@icon('user'){{ trans('common.view_profile') }}</a>
                             </li>

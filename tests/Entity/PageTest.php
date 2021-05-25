@@ -6,6 +6,22 @@ use Tests\TestCase;
 
 class PageTest extends TestCase
 {
+
+    public function test_page_view_when_creator_is_deleted_but_owner_exists()
+    {
+        $page = Page::query()->first();
+        $user = $this->getViewer();
+        $owner = $this->getEditor();
+        $page->created_by = $user->id;
+        $page->owned_by = $owner->id;
+        $page->save();
+        $user->delete();
+
+        $resp = $this->asAdmin()->get($page->getUrl());
+        $resp->assertStatus(200);
+        $resp->assertSeeText('Owned by ' . $owner->name);
+    }
+
     public function test_page_creation_with_markdown_content()
     {
         $this->setSettings(['app-editor' => 'markdown']);
@@ -143,6 +159,29 @@ class PageTest extends TestCase
             'name' => 'My copied test page',
             'created_by' => $viewer->id,
             'book_id' => $newBook->id,
+        ]);
+    }
+
+    public function test_empty_markdown_still_saves_without_error()
+    {
+        $this->setSettings(['app-editor' => 'markdown']);
+        $book = Book::query()->first();
+
+        $this->asEditor()->get($book->getUrl('/create-page'));
+        $draft = Page::query()->where('book_id', '=', $book->id)
+            ->where('draft', '=', true)->first();
+
+        $details = [
+            'name' => 'my page',
+            'markdown' => '',
+        ];
+        $resp = $this->post($book->getUrl("/draft/{$draft->id}"), $details);
+        $resp->assertRedirect();
+
+        $this->assertDatabaseHas('pages', [
+            'markdown' => $details['markdown'],
+            'id' => $draft->id,
+            'draft' => false
         ]);
     }
 }

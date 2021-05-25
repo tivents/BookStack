@@ -47,6 +47,7 @@ return [
     'sort_ascending' => 'Ordenação Crescente',
     'sort_descending' => 'Ordenação Decrescente',
     'sort_name' => 'Nome',
+    'sort_default' => 'Padrão',
     'sort_created_at' => 'Data de Criação',
     'sort_updated_at' => 'Data de Atualização',
 
@@ -64,6 +65,7 @@ return [
     'breadcrumb' => 'Caminho',
 
     // Header
+    'header_menu_expand' => 'Expandir Menu de Cabeçalho',
     'profile_menu' => 'Menu de Perfil',
     'view_profile' => 'Visualizar Perfil',
     'edit_profile' => 'Editar Perfil',
@@ -72,7 +74,9 @@ return [
 
     // Layout tabs
     'tab_info' => 'Informações',
+    'tab_info_label' => 'Separador: Mostrar Informação Secundária',
     'tab_content' => 'Conteúdo',
+    'tab_content_label' => 'Separador: Mostrar Conteúdo Primário',
 
     // Email Content
     'email_action_help' => 'Se estiver com problemas ao carregar no botão ":actionText", copie e cole o URL abaixo no seu navegador:',

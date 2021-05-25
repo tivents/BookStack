@@ -47,6 +47,7 @@ return [
     'sort_ascending' => '오름차 순서',
     'sort_descending' => '내림차 순서',
     'sort_name' => '제목',
+    'sort_default' => 'Default',
     'sort_created_at' => '만든 날짜',
     'sort_updated_at' => '수정한 날짜',
 
@@ -64,6 +65,7 @@ return [
     'breadcrumb' => '탐색 경로',
 
     // Header
+    'header_menu_expand' => 'Expand Header Menu',
     'profile_menu' => '프로필',
     'view_profile' => '프로필 보기',
     'edit_profile' => '프로필 바꾸기',
@@ -72,7 +74,9 @@ return [
 
     // Layout tabs
     'tab_info' => '정보',
+    'tab_info_label' => '탭: 보조 정보 표시',
     'tab_content' => '내용',
+    'tab_content_label' => '탭: 주요 내용 표시',
 
     // Email Content
     'email_action_help' => ':actionText를 클릭할 수 없을 때는 웹 브라우저에서 다음 링크로 접속할 수 있습니다.',
@@ -80,6 +84,6 @@ return [
 
     // Footer Link Options
     // Not directly used but available for convenience to users.
-    'privacy_policy' => 'Privacy Policy',
-    'terms_of_service' => 'Terms of Service',
+    'privacy_policy' => '개인정보처리방침',
+    'terms_of_service' => '이용약관',
 ];

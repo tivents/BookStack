@@ -32,7 +32,7 @@
     @include('partials.notifications')
     @include('common.header')
 
-    <div id="content" class="block">
+    <div id="content" components="@yield('content-components')" class="block">
         @yield('content')
     </div>
 
