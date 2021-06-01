@@ -4,13 +4,13 @@ use BookStack\Actions\View;
 use BookStack\Entities\Models\Book;
 use BookStack\Entities\Tools\BookContents;
 use BookStack\Entities\Repos\ChapterRepo;
+use BookStack\Entities\Tools\NextPreviousContentLocator;
 use BookStack\Entities\Tools\PermissionsUpdater;
 use BookStack\Exceptions\MoveOperationException;
 use BookStack\Exceptions\NotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Throwable;
-use Views;
 
 class ChapterController extends Controller
 {
@@ -65,6 +65,7 @@ class ChapterController extends Controller
 
         $sidebarTree = (new BookContents($chapter->book))->getTree();
         $pages = $chapter->getVisiblePages();
+        $nextPreviousLocator = new NextPreviousContentLocator($chapter, $sidebarTree);
         View::incrementFor($chapter);
 
         $this->setPageTitle($chapter->getShortName());
@@ -73,7 +74,9 @@ class ChapterController extends Controller
             'chapter' => $chapter,
             'current' => $chapter,
             'sidebarTree' => $sidebarTree,
-            'pages' => $pages
+            'pages' => $pages,
+            'next' => $nextPreviousLocator->getNext(),
+            'previous' => $nextPreviousLocator->getPrevious(),
         ]);
     }
 
